@@ -1,7 +1,13 @@
-import "./App.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./assets/pages/Router";
 
-function App() {
-  return <></>;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ChakraProvider>
+        <Router />
+      </ChakraProvider>
+    </BrowserRouter>
+  );
 }
-
-export default App;
