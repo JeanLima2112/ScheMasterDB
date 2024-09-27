@@ -7,6 +7,7 @@ import {
   Flex,
   Text,
   useDisclosure,
+  Image 
 } from "@chakra-ui/react";
 import {
   addEdge,
@@ -50,10 +51,47 @@ export default function WorkSpace() {
           border="1px solid black"
           bg="#f6f6f6"
           borderRightRadius="2rem"
-          justifyContent="center"
           alignItems="center"
+          p="1rem"
+          direction="column"
+          gap="1rem"
         >
-          <Text>Tools</Text>
+          <Flex
+          w="150px"
+          h="fit-content"
+          minH="4rem"
+          p=".3rem"
+          alignItems="center"
+          justifyContent="center"
+          cursor="move"
+          draggable
+        >
+           <Image src='src\assets\elements\Entity-removebg-preview.png' alt='Dan Abramov' />
+        </Flex>
+          <Flex
+          w="150px"
+          h="fit-content"
+          minH="4rem"
+          p=".3rem"
+          alignItems="center"
+          justifyContent="center"
+          cursor="move"
+          draggable
+        >
+           <Image src='src\assets\elements\Relation-removebg-preview.png' alt='Dan Abramov' />
+        </Flex>
+          <Flex
+          w="150px"
+          h="fit-content"
+          minH="4rem"
+          p=".3rem"
+          alignItems="center"
+          justifyContent="center"
+          cursor="move"
+          draggable
+        >
+           <Image src='src\assets\elements\Association-removebg-preview.png' alt='Dan Abramov' />
+        </Flex>
         </Flex>
         <Flex w="85dvw" h="94dvh">
           <ReactFlow
@@ -80,7 +118,7 @@ export default function WorkSpace() {
             <MdOutlineKeyboardDoubleArrowLeft />
           </Button>
           <Drawer size="md" placement="right" onClose={onClose} isOpen={isOpen}>
-            <DrawerContent >
+            <DrawerContent>
               <DrawerCloseButton />
               <Flex justifyContent="center">
                 <DrawerHeader>Edit Atributes</DrawerHeader>
