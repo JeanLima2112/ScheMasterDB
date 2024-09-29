@@ -19,6 +19,7 @@ import {
   useNodesState,
 } from "@xyflow/react";
 import { useCallback } from "react";
+import './style.scss';
 
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
@@ -36,9 +37,7 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
 };
-const initialNodes:Node[] = [
-  
-];
+const initialNodes:Node[] = [];
 const initialEdges:Edge[] = [];
 
 export default function WorkSpace() {
@@ -111,7 +110,7 @@ export default function WorkSpace() {
             />
           </Flex>
         </Flex>
-        <Flex w="85dvw" h="94dvh">
+        <Flex w="95dvw" h="94dvh">
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -120,12 +119,13 @@ export default function WorkSpace() {
             defaultEdgeOptions={defaultEdgeOptions}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onNodeDoubleClick={onOpen}
+            onEdgeDoubleClick={onOpen}
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            attributionPosition="bottom-right"
           >
-            <Controls />
+            <Controls className="custom-controls" />
             <Background gap={12} size={1} />
           </ReactFlow>
           <Flex></Flex>
@@ -134,13 +134,13 @@ export default function WorkSpace() {
             top="10%"
             right="0%"
             onClick={onOpen}
-            bg="gray.600"
-            color="white"
+            color="black"
             borderRadius="0 5px 5px 0"
+            fontSize='1.2rem'
           >
             <MdOutlineKeyboardDoubleArrowLeft />
           </Button>
-          <Drawer size="sm" placement="right" onClose={onClose} isOpen={isOpen}>
+          <Drawer  placement="right" onClose={onClose} isOpen={isOpen}>
             <DrawerContent>
               <DrawerCloseButton />
               <Flex justifyContent="center">
