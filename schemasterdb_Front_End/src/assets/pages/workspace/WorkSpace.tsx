@@ -12,6 +12,8 @@ import {
   addEdge,
   Background,
   Controls,
+  Edge,
+  Node,
   ReactFlow,
   useEdgesState,
   useNodesState,
@@ -23,10 +25,10 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import "@xyflow/react/dist/style.css";
 import Header from "../../../components/header/Header";
 import CustomEdge from "./components/edges/Relation";
-import Node from "./components/nodes/Node";
+import NodeCustom from "./components/nodes/Node";
 
 const NODE_TYPES = {
-  node: Node,
+  node: NodeCustom,
 };
 const EDGE_TYPES = {
   edge: CustomEdge,
@@ -34,11 +36,10 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
 };
-const initialNodes = [
-  { id: "1", type: "node", position: { x: 0, y: 0 }, data: { label: "1" } },
-  { id: "2", type: "node", position: { x: 0, y: 100 }, data: { label: "2" } },
+const initialNodes:Node[] = [
+  
 ];
-const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
+const initialEdges:Edge[] = [];
 
 export default function WorkSpace() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);

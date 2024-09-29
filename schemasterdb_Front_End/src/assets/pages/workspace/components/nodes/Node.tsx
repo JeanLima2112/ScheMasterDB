@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Handle, Position } from "@xyflow/react";
 
-export default function Node() {
+export default function NodeCustom() {
   return (
     <Flex
       w="fit-content"
