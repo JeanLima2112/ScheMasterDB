@@ -5,9 +5,7 @@ import {
   DrawerContent,
   DrawerHeader,
   Flex,
-  Text,
   useDisclosure,
-  Image 
 } from "@chakra-ui/react";
 import {
   addEdge,
@@ -23,10 +21,15 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 import "@xyflow/react/dist/style.css";
 import Header from "../../../components/header/Header";
+import LeftPanel from "./LeftPanel";
+import Node from "./components/nodes/Node";
 
+const NODE_TYPES = {
+  node: Node,
+};
 const initialNodes = [
-  { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
-  { id: "2", position: { x: 0, y: 100 }, data: { label: "2" } },
+  { id: "1", type: "node", position: { x: 0, y: 0 }, data: { label: "1" } },
+  { id: "2", type: "node", position: { x: 0, y: 100 }, data: { label: "2" } },
 ];
 const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 
@@ -45,58 +48,12 @@ export default function WorkSpace() {
     <Flex w="100dvw" h="100dvh" direction="column">
       <Header />
       <Flex w="100dvw" h="94dvh">
-        <Flex
-          w="15dvw"
-          h="94dvh"
-          border="1px solid black"
-          bg="#f6f6f6"
-          borderRightRadius="2rem"
-          alignItems="center"
-          p="1rem"
-          direction="column"
-          gap="1rem"
-        >
-          <Flex
-          w="150px"
-          h="fit-content"
-          minH="4rem"
-          p=".3rem"
-          alignItems="center"
-          justifyContent="center"
-          cursor="move"
-          draggable
-        >
-           <Image src='src\assets\elements\Entity-removebg-preview.png' alt='Dan Abramov' />
-        </Flex>
-          <Flex
-          w="150px"
-          h="fit-content"
-          minH="4rem"
-          p=".3rem"
-          alignItems="center"
-          justifyContent="center"
-          cursor="move"
-          draggable
-        >
-           <Image src='src\assets\elements\Relation-removebg-preview.png' alt='Dan Abramov' />
-        </Flex>
-          <Flex
-          w="150px"
-          h="fit-content"
-          minH="4rem"
-          p=".3rem"
-          alignItems="center"
-          justifyContent="center"
-          cursor="move"
-          draggable
-        >
-           <Image src='src\assets\elements\Association-removebg-preview.png' alt='Dan Abramov' />
-        </Flex>
-        </Flex>
+        <LeftPanel />
         <Flex w="85dvw" h="94dvh">
           <ReactFlow
             nodes={nodes}
             edges={edges}
+            nodeTypes={NODE_TYPES}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -117,7 +74,7 @@ export default function WorkSpace() {
           >
             <MdOutlineKeyboardDoubleArrowLeft />
           </Button>
-          <Drawer size="md" placement="right" onClose={onClose} isOpen={isOpen}>
+          <Drawer size="sm" placement="right" onClose={onClose} isOpen={isOpen}>
             <DrawerContent>
               <DrawerCloseButton />
               <Flex justifyContent="center">
