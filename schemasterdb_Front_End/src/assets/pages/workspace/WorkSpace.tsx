@@ -23,9 +23,16 @@ import "@xyflow/react/dist/style.css";
 import Header from "../../../components/header/Header";
 import LeftPanel from "./LeftPanel";
 import Node from "./components/nodes/Node";
+import CustomEdge from "./components/edges/Relation";
 
 const NODE_TYPES = {
   node: Node,
+};
+const EDGE_TYPES = {
+  edge: CustomEdge,
+};
+const defaultEdgeOptions = {
+  type: "edge",
 };
 const initialNodes = [
   { id: "1", type: "node", position: { x: 0, y: 0 }, data: { label: "1" } },
@@ -54,6 +61,8 @@ export default function WorkSpace() {
             nodes={nodes}
             edges={edges}
             nodeTypes={NODE_TYPES}
+            edgeTypes={EDGE_TYPES}
+            defaultEdgeOptions={defaultEdgeOptions}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}

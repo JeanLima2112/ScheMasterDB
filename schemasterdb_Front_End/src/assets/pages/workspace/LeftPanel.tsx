@@ -3,18 +3,17 @@ import { Flex, Image } from "@chakra-ui/react";
 export default function LeftPanel() {
   return (
     <Flex
-      w="15dvw"
+      w="10dvw"
       h="94dvh"
-      border="1px solid black"
+      borderRight="1px solid black"
       bg="#f6f6f6"
-      borderRightRadius="2rem"
       alignItems="center"
       p="1rem"
       direction="column"
       gap="1rem"
     >
       <Flex
-        w="150px"
+        w="130px"
         h="fit-content"
         minH="4rem"
         p=".3rem"
@@ -29,7 +28,7 @@ export default function LeftPanel() {
         />
       </Flex>
       <Flex
-        w="150px"
+        w="130px"
         h="fit-content"
         minH="4rem"
         p=".3rem"
@@ -44,7 +43,7 @@ export default function LeftPanel() {
         />
       </Flex>
       <Flex
-        w="150px"
+        w="130px"
         h="fit-content"
         minH="4rem"
         p=".3rem"
