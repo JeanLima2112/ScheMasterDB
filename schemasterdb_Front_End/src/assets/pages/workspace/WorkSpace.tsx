@@ -1,12 +1,7 @@
 import {
-  Button,
-  Drawer,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
   Flex,
   Image,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import {
   addEdge,
@@ -21,11 +16,12 @@ import {
 import { useCallback } from "react";
 import './style.scss';
 
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 import "@xyflow/react/dist/style.css";
 import Header from "../../../components/header/Header";
+import EdgeForm from "./components/edgeform/EdgeForm";
 import CustomEdge from "./components/edges/Relation";
+import NodeForm from "./components/nodeform/NodeForm";
 import NodeCustom from "./components/nodes/Node";
 
 const NODE_TYPES = {
@@ -45,6 +41,7 @@ export default function WorkSpace() {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isEdgeOpen, onOpen: onEdgeOpen, onClose:onEdgeClose } = useDisclosure();
 
   const onDrop = useCallback(
     (event) => {
@@ -120,7 +117,7 @@ export default function WorkSpace() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onNodeDoubleClick={onOpen}
-            onEdgeDoubleClick={onOpen}
+            onEdgeDoubleClick={onEdgeOpen}
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
@@ -128,8 +125,7 @@ export default function WorkSpace() {
             <Controls className="custom-controls" />
             <Background gap={12} size={1} />
           </ReactFlow>
-          <Flex></Flex>
-          <Button
+          {/* <Button
             position="absolute"
             top="10%"
             right="0%"
@@ -139,15 +135,9 @@ export default function WorkSpace() {
             fontSize='1.2rem'
           >
             <MdOutlineKeyboardDoubleArrowLeft />
-          </Button>
-          <Drawer  placement="right" onClose={onClose} isOpen={isOpen}>
-            <DrawerContent>
-              <DrawerCloseButton />
-              <Flex justifyContent="center">
-                <DrawerHeader>Edit Atributes</DrawerHeader>
-              </Flex>
-            </DrawerContent>
-          </Drawer>
+          </Button> */}
+          <NodeForm onClose={onClose} isOpen={isOpen}  />
+          <EdgeForm isEdgeOpen={isEdgeOpen} onEdgeClose={onEdgeClose} />
         </Flex>
       </Flex>
     </Flex>
