@@ -5,6 +5,7 @@ import {
   DrawerContent,
   DrawerHeader,
   Flex,
+  Image,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -21,9 +22,8 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 import "@xyflow/react/dist/style.css";
 import Header from "../../../components/header/Header";
-import LeftPanel from "./LeftPanel";
-import Node from "./components/nodes/Node";
 import CustomEdge from "./components/edges/Relation";
+import Node from "./components/nodes/Node";
 
 const NODE_TYPES = {
   node: Node,
@@ -46,6 +46,35 @@ export default function WorkSpace() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      const containerBounds = event.target.getBoundingClientRect();
+
+      const dropPosition = {
+        x: event.clientX - containerBounds.left,
+        y: event.clientY - containerBounds.top,
+      };
+      const nodeId = crypto.randomUUID();
+      setNodes((existingNodes) => [
+        ...existingNodes,
+        {
+          id: nodeId,
+          type: "node",
+          position: dropPosition,
+          data: { label: `Node ${nodeId}` },
+        },
+      ]);
+    },
+    [setNodes]
+  );
+
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
@@ -55,7 +84,32 @@ export default function WorkSpace() {
     <Flex w="100dvw" h="100dvh" direction="column">
       <Header />
       <Flex w="100dvw" h="94dvh">
-        <LeftPanel />
+        <Flex
+          w="10dvw"
+          h="94dvh"
+          borderRight="1px solid black"
+          bg="#f6f6f6"
+          alignItems="center"
+          p="1rem"
+          direction="column"
+          gap="1rem"
+        >
+          <Flex
+            w="130px"
+            h="fit-content"
+            minH="4rem"
+            p=".3rem"
+            alignItems="center"
+            justifyContent="center"
+            cursor="grab"
+            draggable
+          >
+            <Image
+              src="src\assets\elements\Entity-removebg-preview.png"
+              alt="Dan Abramov"
+            />
+          </Flex>
+        </Flex>
         <Flex w="85dvw" h="94dvh">
           <ReactFlow
             nodes={nodes}
@@ -66,6 +120,8 @@ export default function WorkSpace() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
             attributionPosition="bottom-right"
           >
             <Controls />
