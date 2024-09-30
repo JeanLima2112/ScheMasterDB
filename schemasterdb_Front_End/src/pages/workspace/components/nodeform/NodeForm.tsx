@@ -12,7 +12,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NodeProps } from "./type";
 
 interface Props {
@@ -73,7 +73,6 @@ export default function NodeForm({
           <FormControl isInvalid={!!errors.label}>
             <FormLabel>Label</FormLabel>
             <Input
-            defaultValue={name}
               {...register("label", {
                 required: "Label is required",
                 minLength: {

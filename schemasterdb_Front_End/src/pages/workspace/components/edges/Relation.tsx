@@ -48,7 +48,7 @@ const CustomEdge = ({
         alignmentBaseline="central"
         style={{ fontSize: 18, fill: "#000", fontWeight: "bold",userSelect: "none" }}
       >
-        Rel
+        {label}
       </text>
     </>
   );

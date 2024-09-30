@@ -27,6 +27,8 @@ const EDGE_TYPES = {
 };
 const defaultEdgeOptions = {
   type: "edge",
+  label: "Relation",
+  id: crypto.randomUUID(),
 };
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];
@@ -84,6 +86,7 @@ export default function WorkSpace() {
 
   const onEdgeDoubleClick = (event: React.MouseEvent, edge: Edge) => {
     setEdgeUpdate(edge);
+    onEdgeOpen();
   };
 
   return (
@@ -126,7 +129,7 @@ export default function WorkSpace() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onNodeDoubleClick={onNodesDoubleClick}
-            onEdgeDoubleClick={onEdgeOpen}
+            onEdgeDoubleClick={onEdgeDoubleClick}
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
@@ -152,7 +155,13 @@ export default function WorkSpace() {
             nodeUpdate={nodeUpdate}
             setNodes={setNodes}
           />
-          <EdgeForm isEdgeOpen={isEdgeOpen} onEdgeClose={onEdgeClose} />
+          <EdgeForm
+            isEdgeOpen={isEdgeOpen}
+            onEdgeClose={onEdgeClose}
+            edges={edges}
+            setEdges={setEdges}
+            edgeUpdate={edgeUpdate}
+          />
         </Flex>
       </Flex>
     </Flex>
