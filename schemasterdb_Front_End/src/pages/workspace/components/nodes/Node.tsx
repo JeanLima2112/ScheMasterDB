@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Handle, Position } from "@xyflow/react";
 
-export default function NodeCustom() {
+export default function NodeCustom({data}:any) {
   return (
     <Flex
       w="fit-content"
@@ -32,7 +32,7 @@ export default function NodeCustom() {
           display="flex"
           justifyContent="center"
         >
-          Name of Node
+          {data.label ? `${data.label}`: 'Entity'}
         </Text>
       </Flex>
 

@@ -1,8 +1,4 @@
-import {
-  Flex,
-  Image,
-  useDisclosure
-} from "@chakra-ui/react";
+import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import {
   addEdge,
   Background,
@@ -13,12 +9,11 @@ import {
   useEdgesState,
   useNodesState,
 } from "@xyflow/react";
-import { useCallback } from "react";
-import './style.scss';
-
+import { useCallback, useState } from "react";
+import "./style.scss";
 
 import "@xyflow/react/dist/style.css";
-import Header from "../../../components/header/Header";
+import Header from "../../components/header/Header";
 import EdgeForm from "./components/edgeform/EdgeForm";
 import CustomEdge from "./components/edges/Relation";
 import NodeForm from "./components/nodeform/NodeForm";
@@ -33,15 +28,21 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
 };
-const initialNodes:Node[] = [];
-const initialEdges:Edge[] = [];
+const initialNodes: Node[] = [];
+const initialEdges: Edge[] = [];
 
 export default function WorkSpace() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodeUpdate, setNodeUpdate] = useState<Node>();
+  const [edgeUpdate, setEdgeUpdate] = useState<Edge>();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isEdgeOpen, onOpen: onEdgeOpen, onClose:onEdgeClose } = useDisclosure();
+  const {
+    isOpen: isEdgeOpen,
+    onOpen: onEdgeOpen,
+    onClose: onEdgeClose,
+  } = useDisclosure();
 
   const onDrop = useCallback(
     (event) => {
@@ -53,14 +54,14 @@ export default function WorkSpace() {
         x: event.clientX - containerBounds.left,
         y: event.clientY - containerBounds.top,
       };
-      const nodeId = crypto.randomUUID();
+      const id = crypto.randomUUID();
       setNodes((existingNodes) => [
         ...existingNodes,
         {
-          id: nodeId,
+          id,
           type: "node",
           position: dropPosition,
-          data: { label: `Node ${nodeId}` },
+          data: { label: "" },
         },
       ]);
     },
@@ -76,6 +77,14 @@ export default function WorkSpace() {
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
+  const onNodesDoubleClick = (event: React.MouseEvent, node: Node) => {
+    setNodeUpdate(node);
+    onOpen();
+  };
+
+  const onEdgeDoubleClick = (event: React.MouseEvent, edge: Edge) => {
+    setEdgeUpdate(edge);
+  };
 
   return (
     <Flex w="100dvw" h="100dvh" direction="column">
@@ -102,7 +111,7 @@ export default function WorkSpace() {
             draggable
           >
             <Image
-              src="src\assets\elements\Entity-removebg-preview.png"
+              src="src\elements\Entity-removebg-preview.png"
               alt="Dan Abramov"
             />
           </Flex>
@@ -116,7 +125,7 @@ export default function WorkSpace() {
             defaultEdgeOptions={defaultEdgeOptions}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            onNodeDoubleClick={onOpen}
+            onNodeDoubleClick={onNodesDoubleClick}
             onEdgeDoubleClick={onEdgeOpen}
             onConnect={onConnect}
             onDrop={onDrop}
@@ -136,7 +145,13 @@ export default function WorkSpace() {
           >
             <MdOutlineKeyboardDoubleArrowLeft />
           </Button> */}
-          <NodeForm onClose={onClose} isOpen={isOpen}  />
+          <NodeForm
+            onClose={onClose}
+            isOpen={isOpen}
+            nodes={nodes}
+            nodeUpdate={nodeUpdate}
+            setNodes={setNodes}
+          />
           <EdgeForm isEdgeOpen={isEdgeOpen} onEdgeClose={onEdgeClose} />
         </Flex>
       </Flex>
