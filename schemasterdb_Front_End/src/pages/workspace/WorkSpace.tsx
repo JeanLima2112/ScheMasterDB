@@ -18,6 +18,7 @@ import EdgeForm from "./components/edgeform/EdgeForm";
 import CustomEdge from "./components/edges/Relation";
 import NodeForm from "./components/nodeform/NodeForm";
 import NodeCustom from "./components/nodes/Node";
+import { animate } from "framer-motion";
 
 const NODE_TYPES = {
   node: NodeCustom,
@@ -28,7 +29,7 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
   label: "Relation",
-  id: crypto.randomUUID(),
+  // animated: true,
 };
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];
@@ -75,10 +76,13 @@ export default function WorkSpace() {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
+  const onConnect = useCallback((params) => {
+    const newEdge = {
+      ...params,
+      id: crypto.randomUUID(),
+    };
+    setEdges((eds) => addEdge(newEdge, eds));
+  }, []);
   const onNodesDoubleClick = (event: React.MouseEvent, node: Node) => {
     setNodeUpdate(node);
     onOpen();
