@@ -64,7 +64,7 @@ export default function WorkSpace() {
           id,
           type: "node",
           position: dropPosition,
-          data: { label: "" },
+          data: { label: "Entity" },
         },
       ]);
     },
