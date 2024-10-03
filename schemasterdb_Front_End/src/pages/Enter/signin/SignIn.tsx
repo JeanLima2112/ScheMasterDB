@@ -1,35 +1,31 @@
 import {
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Text,
-  Link,
+    Button,
+    Flex,
+    FormControl,
+    FormErrorMessage,
+    Input,
+    InputGroup,
+    InputLeftElement,
+    Link,
+    Text
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { FaUser } from "react-icons/fa";
-import { GoCheckbox } from "react-icons/go";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link as RouterLink } from "react-router-dom";
+import { IoEnterSharp } from "react-icons/io5";
 
-import { UserCreate } from "./type";
+import { UserLogin } from "./type";
 
-export default function SignUp() {
+export default function AuthPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm<UserCreate>();
-  const watchPassword = watch("password");
+  } = useForm<UserLogin>();
 
-  const onSignUpSubmit = (data: UserCreate) => {
+  const onSignInSubmit = (data: UserLogin) => {
     console.log("Sign Up Data:", data);
     // Requisição a API
   };
@@ -53,7 +49,7 @@ export default function SignUp() {
       >
         <Flex direction="column" gap="1.5rem">
           <Text fontSize="2xl" fontWeight="bold" textAlign="center">
-            Criar Conta
+            Entre em sua conta
           </Text>
 
           <FormControl isInvalid={!!errors?.email}>
@@ -82,28 +78,6 @@ export default function SignUp() {
             )}
           </FormControl>
 
-          <FormControl isInvalid={!!errors?.username}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <FaUser />
-              </InputLeftElement>
-              <Input
-                placeholder="Nome de usuário"
-                type="text"
-                {...register("username", {
-                  required: "Nome de usuário é obrigatório",
-                  minLength: {
-                    value: 3,
-                    message: "Nome de usuário deve ter pelo menos 3 caracteres",
-                  },
-                })}
-              />
-            </InputGroup>
-            {errors?.username && (
-              <FormErrorMessage>{errors.username.message}</FormErrorMessage>
-            )}
-          </FormControl>
-
           <FormControl isInvalid={!!errors?.password}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
@@ -125,41 +99,6 @@ export default function SignUp() {
               <FormErrorMessage>{errors.password.message}</FormErrorMessage>
             )}
           </FormControl>
-
-          <FormControl isInvalid={!!errors?.passwordConfirmation}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <GoCheckbox />
-              </InputLeftElement>
-              <Input
-                placeholder="Confirme a senha"
-                type="password"
-                {...register("passwordConfirmation", {
-                  required: "Confirmação de senha é obrigatória",
-                  validate: (value) =>
-                    value === watchPassword || "As senhas não coincidem",
-                })}
-              />
-            </InputGroup>
-            {errors?.passwordConfirmation && (
-              <FormErrorMessage>
-                {errors.passwordConfirmation.message}
-              </FormErrorMessage>
-            )}
-          </FormControl>
-
-          <FormControl isInvalid={!!errors?.terms}>
-            <Checkbox
-              {...register("terms", {
-                required: "Aceitar os termos é obrigatório",
-              })}
-            >
-              Aceitar termos e condições
-            </Checkbox>
-            {errors?.terms && (
-              <FormErrorMessage>{errors.terms.message}</FormErrorMessage>
-            )}
-          </FormControl>
         </Flex>
 
         <Button
@@ -168,16 +107,16 @@ export default function SignUp() {
           w="100%"
           mt="2rem"
           gap=".5rem"
-          onClick={() => handleSubmit(onSignUpSubmit)()}
+          onClick={() => handleSubmit(onSignInSubmit)()}
         >
-          <IoMdPersonAdd />
-          Criar Conta
+          <IoEnterSharp />
+          Entrar
         </Button>
 
         <Text textAlign="start">
-          Já tem uma conta?{" "}
-          <Link as={RouterLink} to="/login" color="teal.500">
-            Faça login
+          Ainda não possui conta?{" "}
+          <Link as={RouterLink} to="/" color="teal.500">
+            Faça o seu cadastro
           </Link>
         </Text>
       </Flex>
