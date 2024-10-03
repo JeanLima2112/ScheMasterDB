@@ -10,11 +10,10 @@ import {
     Text
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { IoMdPersonAdd } from "react-icons/io";
+import { IoEnterSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link as RouterLink } from "react-router-dom";
-import { IoEnterSharp } from "react-icons/io5";
 
 import { UserLogin } from "./type";
 
