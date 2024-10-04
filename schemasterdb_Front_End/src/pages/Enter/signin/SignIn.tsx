@@ -1,13 +1,13 @@
 import {
-    Button,
-    Flex,
-    FormControl,
-    FormErrorMessage,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    Link,
-    Text
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Link,
+  Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { IoEnterSharp } from "react-icons/io5";
@@ -15,18 +15,29 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link as RouterLink } from "react-router-dom";
 
-import { UserLogin } from "./type";
+import axios from "axios";
+import { UserCreate } from "../types/type";
 
 export default function AuthPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserLogin>();
+  } = useForm<Partial<UserCreate>>();
 
-  const onSignInSubmit = (data: UserLogin) => {
-    console.log("Sign Up Data:", data);
-    // Requisição a API
+  const onSignInSubmit = (data: UserCreate) => {
+    console.log(data);
+    axios
+      .post("<Endereço>", data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        const token = response.data.token;
+        console.log(token);
+      })
+      .catch(() => {
+        alert("Ocorreu algum erro ao Entrar");
+      });
   };
 
   return (
