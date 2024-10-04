@@ -46,9 +46,9 @@ export default function SignUp() {
       <Flex
         direction="column"
         minW="40rem"
-        gap="2rem"
+        gap=".5rem"
         bg="#ffff"
-        p="2%"
+        p="1%"
         borderRadius="1rem"
       >
         <Flex direction="column" gap="1.5rem">
