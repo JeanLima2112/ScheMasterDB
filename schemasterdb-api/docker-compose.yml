@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: SchemasterDb-api
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: SchemasterDb-api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: UtAP0CFWhxJejRqRBp
