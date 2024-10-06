@@ -16,10 +16,11 @@ import { GoCheckbox } from "react-icons/go";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { UserCreate } from "../types/type";
+import { setToken } from "../../../auth/Auth";
 
 export default function SignUp() {
   const {
@@ -29,6 +30,8 @@ export default function SignUp() {
     watch,
   } = useForm<UserCreate>();
   const watchPassword = watch("password");
+
+  const navigate = useNavigate();
 
   const onSignUpSubmit = (data: UserCreate) => {
     console.log(data);
@@ -43,8 +46,8 @@ export default function SignUp() {
               headers: { "Content-Type": "application/json" },
             })
             .then((response) => {
-              const token = response.data.token;
-              console.log(token);
+              setToken(response.data.token);
+              navigate("/projects");
             })
             .catch(() => {
               alert("Erro na Autenticação do Usuario!");

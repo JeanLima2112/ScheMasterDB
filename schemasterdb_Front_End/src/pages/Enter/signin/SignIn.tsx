@@ -13,10 +13,11 @@ import { useForm } from "react-hook-form";
 import { IoEnterSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { UserCreate } from "../types/type";
+import { setToken } from "../../../auth/Auth";
 
 export default function AuthPage() {
   const {
@@ -25,6 +26,8 @@ export default function AuthPage() {
     formState: { errors },
   } = useForm<UserCreate>();
 
+  const navigate = useNavigate();
+
   const onSignInSubmit = (data: UserCreate) => {
     console.log(data);
     axios
@@ -32,8 +35,8 @@ export default function AuthPage() {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        const token = response.data.token;
-        console.log(token);
+        setToken(response.data.token);
+        navigate("/projects"); 
       })
       .catch(() => {
         alert("Ocorreu algum erro ao Entrar");

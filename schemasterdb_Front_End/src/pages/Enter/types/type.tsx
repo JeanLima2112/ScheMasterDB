@@ -5,3 +5,4 @@ export type UserCreate = {
   passwordConfirmation: string;
   terms: boolean;
 };
+
