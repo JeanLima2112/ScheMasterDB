@@ -28,7 +28,7 @@ export default function AuthPage() {
   const onSignInSubmit = (data: UserCreate) => {
     console.log(data);
     axios
-      .post("<Endereço>", data, {
+      .post("http://localhost:3000/auth/login", data, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
