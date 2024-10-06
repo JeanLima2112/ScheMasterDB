@@ -36,21 +36,21 @@ export default function SignUp() {
       .post("http://localhost:3000/user", data, {
         headers: { "Content-Type": "application/json" },
       })
-      // .then((response) => {
-      //   if (response.status == 201) {
-      //     axios
-      //       .post("<Endereço>", data, {
-      //         headers: { "Content-Type": "application/json" },
-      //       })
-      //       .then((response) => {
-      //         const token = response.data.token;
-      //         console.log(token);
-      //       })
-      //       .catch(() => {
-      //         alert("Erro na Autenticação do Usuario!");
-      //       });
-      //   }
-      // })
+      .then((response) => {
+        if (response.status == 201) {
+          axios
+            .post("http://localhost:3000/auth/login", data, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+              const token = response.data.token;
+              console.log(token);
+            })
+            .catch(() => {
+              alert("Erro na Autenticação do Usuario!");
+            });
+        }
+      })
       .catch(() => {
         alert("Erro Na Criação do Usuario!");
       });

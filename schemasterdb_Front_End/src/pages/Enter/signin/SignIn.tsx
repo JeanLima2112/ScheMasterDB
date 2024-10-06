@@ -23,7 +23,7 @@ export default function AuthPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Partial<UserCreate>>();
+  } = useForm<UserCreate>();
 
   const onSignInSubmit = (data: UserCreate) => {
     console.log(data);

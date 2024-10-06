@@ -25,6 +25,5 @@ export default () => ({
     synchronize: process.env.DB_SYNC === 'true',
     autoLoadEntities: process.env.DB_AUTOLOAD_ENTITIES === 'true',
     logging: false,
-
   },
 });
