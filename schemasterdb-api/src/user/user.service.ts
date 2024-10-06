@@ -12,11 +12,11 @@ export class UserService {
     private readonly usersRepository: Repository<User>,
   ) {}
   async create(newUser: UserDto): Promise<CreateUserResponse> {
-    const userAlreadyRegistered = await this.findOne(newUser.username);
+    const userAlreadyRegistered = await this.findOne(newUser.email);
 
     if (userAlreadyRegistered) {
       throw new ConflictException(
-        `User ${newUser.username} already registered`,
+        `User with email ${newUser.email} already registered`,
       );
     }
     const dbUser = new User();
@@ -27,9 +27,9 @@ export class UserService {
     const { id, username, email } = await this.usersRepository.save(dbUser);
     return { id, username, email };
   }
-  async findOne(username: string): Promise<UserDto | null> {
+  async findOne(email: string): Promise<UserDto | null> {
     const userFound = await this.usersRepository.findOne({
-      where: { username },
+      where: { email },
     });
 
     if (!userFound) {
