@@ -2,6 +2,9 @@ import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import {
   addEdge,
   Background,
+
+  ConnectionMode,
+
   Controls,
   Edge,
   Node,
@@ -18,7 +21,6 @@ import EdgeForm from "./components/edgeform/EdgeForm";
 import CustomEdge from "./components/edges/Relation";
 import NodeForm from "./components/nodeform/NodeForm";
 import NodeCustom from "./components/nodes/Node";
-import { animate } from "framer-motion";
 
 const NODE_TYPES = {
   node: NodeCustom,
@@ -29,6 +31,7 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
   label: "Relation",
+  data: {type: "?"}
   // animated: true,
 };
 const initialNodes: Node[] = [];
@@ -137,6 +140,7 @@ export default function WorkSpace() {
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
+            connectionMode={ConnectionMode.Loose}
           >
             <Controls className="custom-controls" />
             <Background gap={12} size={1} />

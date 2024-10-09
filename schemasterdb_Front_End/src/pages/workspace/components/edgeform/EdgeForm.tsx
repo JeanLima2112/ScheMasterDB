@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { EdgeProps } from "./type";
 import { useForm } from "react-hook-form";
@@ -23,7 +24,12 @@ interface Props {
   setEdges: (values: any) => void;
 }
 
-export default function EdgeForm({ onEdgeClose, isEdgeOpen,edgeUpdate,setEdges }: Props) {
+export default function EdgeForm({
+  onEdgeClose,
+  isEdgeOpen,
+  edgeUpdate,
+  setEdges,
+}: Props) {
   const {
     register,
     handleSubmit,
@@ -37,22 +43,22 @@ export default function EdgeForm({ onEdgeClose, isEdgeOpen,edgeUpdate,setEdges }
     }
   }, [edgeUpdate, reset]);
 
-  function save(data: { label: string }) {
-    console.log(edgeUpdate)
-    const newEdgeId = edgeUpdate.id; 
-  
+  function save(data: EdgeProps) {
+    const newEdgeId = edgeUpdate.id;
+
     setEdges((edges: any) =>
       edges.map((edge: any) =>
         edge.id === newEdgeId
           ? {
               ...edge,
-              label: data.label, 
+              label: data.label,
+              type: data.type,
             }
           : edge
       )
     );
-  
-    reset(); 
+
+    reset();
     onEdgeClose();
   }
 
@@ -63,7 +69,7 @@ export default function EdgeForm({ onEdgeClose, isEdgeOpen,edgeUpdate,setEdges }
         <DrawerHeader>Edit Relation</DrawerHeader>
 
         <DrawerBody>
-        <FormControl isInvalid={!!errors.label}>
+          <FormControl isInvalid={!!errors.label}>
             <FormLabel>Label</FormLabel>
             <Input
               {...register("label", {
@@ -76,6 +82,22 @@ export default function EdgeForm({ onEdgeClose, isEdgeOpen,edgeUpdate,setEdges }
             />
             {errors.label && (
               <FormErrorMessage>{errors.label.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <FormControl mt={5} isInvalid={!!errors.type}>
+            <FormLabel>Cardinalidade</FormLabel>
+            <Select
+              placeholder="Selecione a cardinalidade"
+              {...register("type", {
+                required: "A cardinalidade é obrigatória",
+              })}
+            >
+              <option value="1 - *">Um para Muitos</option>
+              <option value="* - *">Muitos para Muitos</option>
+              <option value="1 - 1">Um para Um</option>
+            </Select>
+            {errors.type && (
+              <FormErrorMessage>{errors.type.message}</FormErrorMessage>
             )}
           </FormControl>
         </DrawerBody>

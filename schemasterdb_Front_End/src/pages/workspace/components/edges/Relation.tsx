@@ -8,6 +8,7 @@ const CustomEdge = ({
   targetX,
   targetY,
   label,
+  data,
 }: EdgeProps) => {
   const [edgePath] = getStraightPath({
     sourceX,
@@ -33,23 +34,27 @@ const CustomEdge = ({
   return (
     <>
       <BaseEdge
-      
         id={id}
         path={edgePath}
         style={{ stroke: "#000", strokeWidth: 2 }}
       />
-
       <path d={diamondPath} fill="#fff" stroke="#000" strokeWidth={2} />
-
       <text
         x={midX}
         y={midY}
         textAnchor="middle"
         alignmentBaseline="central"
-        style={{ fontSize: 18, fill: "#000", fontWeight: "bold",userSelect: "none" }}
+        style={{
+          fontSize: 18,
+          fill: "#000",
+          fontWeight: "bold",
+          userSelect: "none",
+        }}
       >
         {label}
-      </text>
+        {data.type}
+      </text>{" "}
+      type ficar abaixo de name
     </>
   );
 };
