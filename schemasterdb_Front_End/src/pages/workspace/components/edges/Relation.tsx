@@ -20,8 +20,8 @@ const CustomEdge = ({
   const midX = (sourceX + targetX) / 2;
   const midY = (sourceY + targetY) / 2;
 
-  const diamondWidth = 150;
-  const diamondHeight = 80;
+  const diamondWidth = 180;
+  const diamondHeight = 100;
 
   const diamondPath = `
     M ${midX},${midY - diamondHeight / 2} 
@@ -30,6 +30,8 @@ const CustomEdge = ({
     L ${midX - diamondWidth / 2},${midY} 
     Z
   `;
+
+  const edgeLabel = data?.type ? data.type.toString() : '?'; // Garantindo que seja string
 
   return (
     <>
@@ -51,10 +53,13 @@ const CustomEdge = ({
           userSelect: "none",
         }}
       >
-        {label}
-        {data.type}
-      </text>{" "}
-      type ficar abaixo de name
+
+        <tspan x={midX} dy="-0.4em">{label}</tspan> 
+   
+        <tspan x={midX} dy="1.5em" style={{ fill: "red" }}>
+          {edgeLabel}
+        </tspan> 
+      </text>
     </>
   );
 };

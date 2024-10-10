@@ -32,7 +32,7 @@ const defaultEdgeOptions = {
   type: "edge",
   label: "Relation",
   data: {type: "?"},
-  animated: true,
+  // animated: true,
 };
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];

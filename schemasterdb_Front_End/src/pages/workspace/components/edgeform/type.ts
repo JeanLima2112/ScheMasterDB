@@ -1,4 +1,4 @@
-export type EdgeProps = {
+export type MyEdgeProps = {
     label: string;
     type: string
 }

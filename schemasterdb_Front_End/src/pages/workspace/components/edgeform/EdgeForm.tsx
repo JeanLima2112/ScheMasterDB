@@ -12,7 +12,7 @@ import {
   Input,
   Select,
 } from "@chakra-ui/react";
-import { EdgeProps } from "./type";
+import { MyEdgeProps } from "./type";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 
@@ -35,7 +35,7 @@ export default function EdgeForm({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<EdgeProps>();
+  } = useForm<MyEdgeProps>();
 
   useEffect(() => {
     if (edgeUpdate) {
@@ -43,7 +43,8 @@ export default function EdgeForm({
     }
   }, [edgeUpdate, reset]);
 
-  function save(data: EdgeProps) {
+  function save(data: MyEdgeProps) {
+    console.log(edgeUpdate);
     const newEdgeId = edgeUpdate.id;
 
     setEdges((edges: any) =>
@@ -52,7 +53,7 @@ export default function EdgeForm({
           ? {
               ...edge,
               label: data.label,
-              type: data.type,
+              data: { type: data.type },
             }
           : edge
       )
