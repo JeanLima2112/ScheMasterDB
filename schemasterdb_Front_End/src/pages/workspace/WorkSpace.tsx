@@ -31,8 +31,8 @@ const EDGE_TYPES = {
 const defaultEdgeOptions = {
   type: "edge",
   label: "Relation",
-  data: {type: "?"}
-  // animated: true,
+  data: {type: "?"},
+  animated: true,
 };
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];

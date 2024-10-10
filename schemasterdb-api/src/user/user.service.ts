@@ -1,3 +1,4 @@
+import { EmailService } from './email.service';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateUserResponse, UserDto } from './dto/user.dto';
 import { hashSync as bcryptHashSync } from 'bcrypt';
@@ -10,7 +11,9 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    private readonly emailService: EmailService,
   ) {}
+
   async create(newUser: UserDto): Promise<CreateUserResponse> {
     const userAlreadyRegistered = await this.findOne(newUser.email);
 
@@ -19,14 +22,19 @@ export class UserService {
         `User with email ${newUser.email} already registered`,
       );
     }
+
     const dbUser = new User();
     dbUser.username = newUser.username;
     dbUser.email = newUser.email;
     dbUser.passwordHash = bcryptHashSync(newUser.password, 10);
 
     const { id, username, email } = await this.usersRepository.save(dbUser);
+
+    await this.sendWelcomeEmail(email, username);
+
     return { id, username, email };
   }
+
   async findOne(email: string): Promise<UserDto | null> {
     const userFound = await this.usersRepository.findOne({
       where: { email },
@@ -35,11 +43,22 @@ export class UserService {
     if (!userFound) {
       return null;
     }
+
     return {
+      password: userFound.passwordHash,
       id: userFound.id,
       email: userFound.email,
       username: userFound.username,
-      password: userFound.passwordHash,
     };
+  }
+
+  private async sendWelcomeEmail(
+    email: string,
+    username: string,
+  ): Promise<void> {
+    const subject = 'Bem-vindo ao nosso sistema!';
+    const text = `Olá, ${username}, obrigado por se registrar. Por favor, verifique seu e-mail para concluir o processo de verificação.`;
+
+    await this.emailService.sendEmail(email, subject, text);
   }
 }

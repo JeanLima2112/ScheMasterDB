@@ -1,5 +1,4 @@
-import { TemplateEntity } from 'src/template/entities/template.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -14,5 +13,4 @@ export class User {
 
   @Column({ type: 'varchar', name: 'password_hash' })
   passwordHash: string;
-
 }
