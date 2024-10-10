@@ -2,15 +2,12 @@ import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import {
   addEdge,
   Background,
-
-  ConnectionMode,
-
   Controls,
   Edge,
   Node,
   ReactFlow,
   useEdgesState,
-  useNodesState,
+  useNodesState
 } from "@xyflow/react";
 import { useCallback, useState } from "react";
 import "./style.scss";
@@ -140,7 +137,6 @@ export default function WorkSpace() {
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            connectionMode={ConnectionMode.Loose}
           >
             <Controls className="custom-controls" />
             <Background gap={12} size={1} />

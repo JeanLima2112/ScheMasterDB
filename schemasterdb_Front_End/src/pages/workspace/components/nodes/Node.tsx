@@ -36,10 +36,8 @@ export default function NodeCustom({data}:any) {
         </Text>
       </Flex>
 
-      <Handle id="connection-left" type="source"  style={{ width: 10, height: 10, borderRadius: 0, background: "white", border: "1px solid" }} position={Position.Left} />
-      <Handle id="connection-right" type="source"  style={{ width: 10, height: 10, borderRadius: 0, background: "white", border: "1px solid" }} position={Position.Right} />
-      <Handle id="connection-top" type="source"  style={{ width: 10, height: 10, borderRadius: 0, background: "white", border: "1px solid" }} position={Position.Top} />
-      <Handle id="connection-bottom" type="source"  style={{ width: 10, height: 10, borderRadius: 0, background: "white", border: "1px solid" }} position={Position.Bottom} />
+      <Handle id="connection-left" type="target"  style={{ width: 10, height: 10, borderRadius: 0, background: "white", border: "1px solid" }} position={Position.Left} />
+      <Handle id="connection-right" type="source"  style={{ width: 10, height: 10, borderRadius: 50, background: "red", border: "1px solid" }} position={Position.Right} />
 
     </Flex>
   );
