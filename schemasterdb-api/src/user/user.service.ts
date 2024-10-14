@@ -57,8 +57,7 @@ export class UserService {
     username: string,
   ): Promise<void> {
     const subject = 'Bem-vindo ao nosso sistema!';
-    const text = `Olá, ${username}, obrigado por se registrar. Por favor, verifique seu e-mail para concluir o processo de verificação.`;
-
+    const text = `Olá ${username},\n\nObrigado por se registrar! Sua conta foi criada com sucesso. Você pode agora fazer login em nosso site.\n\nAtenciosamente,\nEquipe do SchemasterDB`;
     await this.emailService.sendEmail(email, subject, text);
   }
 }

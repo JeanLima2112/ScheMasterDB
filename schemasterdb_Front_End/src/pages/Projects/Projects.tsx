@@ -1,14 +1,74 @@
 import {
-    Flex,
-    Text
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text
 } from "@chakra-ui/react";
+import { CgProfile } from "react-icons/cg";
+import { FaPlus } from "react-icons/fa6";
+import { IoIosLogOut } from "react-icons/io";
 
-  
-  export default function Projects() {
-    return (
-      <Flex justifyContent='center' alignItems='center' h='100dvh'>
-        <Text>Pagina que ira exibir os templates do usuário.</Text>
+
+export default function Home() {
+  return (
+    <Flex direction="column">
+      <Flex className="Header">
+        <Flex
+          w="100dvw"
+          alignItems="center"
+          fontSize="2rem"
+          color="white"
+          justifyContent="space-between"
+          py=".5rem"
+          px="2rem"
+          borderBottom="1px solid black "
+          bg="#353538"
+        >
+          <Flex cursor="pointer">
+            <Menu isLazy>
+              <MenuButton border='none'>
+                <CgProfile />
+              </MenuButton>
+              <MenuList>
+                <MenuItem color='black' fontSize='1rem' border='none'>
+                  <IoIosLogOut />
+                  <Text>Sair </Text>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        </Flex>
       </Flex>
-    );
-  }
+      <Flex px="5%" py="3%" direction="column" gap="2rem">
+        <Flex
+          w="100%"
+          justifyContent="space-between"
+          borderBottom="3px solid black"
+          p=".5rem"
+          alignItems="center"
+        >
+          <Text fontSize="2rem">Modelos</Text>
+          <Button
+            gap="1rem"
+            transition=".5s"
+            alignItems="center"
+            color="white"
+            border="none"
+            bg="#3d4752"
+            _hover={{ bg: "#24a8d5" }}
   
+          >
+            <FaPlus /> Criar um Novo
+          </Button>
+        </Flex>
+        <Flex className="here" wrap="wrap">
+
+          
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+}
