@@ -31,7 +31,16 @@ const CustomEdge = ({
     Z
   `;
 
-  const edgeLabel = data?.type ? data.type.toString() : '?'; 
+  const squareSize = Math.max(diamondWidth, diamondHeight);
+  const squarePath = `
+   M ${midX - diamondWidth / 2},${midY - diamondHeight / 2}
+    L ${midX + diamondWidth / 2},${midY - diamondHeight / 2}
+    L ${midX + diamondWidth / 2},${midY + diamondHeight / 2}
+    L ${midX - diamondWidth / 2},${midY + diamondHeight / 2}
+    Z
+  `;
+
+  const edgeLabel = data?.type ? data.type.toString() : "?";
 
   return (
     <>
@@ -40,6 +49,11 @@ const CustomEdge = ({
         path={edgePath}
         style={{ stroke: "#000", strokeWidth: 2 }}
       />
+
+      {data?.type === "* - *" && (
+        <path d={squarePath} fill="none" stroke="#000" strokeWidth={2} />
+      )}
+
       <path d={diamondPath} fill="#fff" stroke="#000" strokeWidth={2} />
       <text
         x={midX}
@@ -53,12 +67,12 @@ const CustomEdge = ({
           userSelect: "none",
         }}
       >
-
-        <tspan x={midX} dy="0em">{label}</tspan> 
-   
+        <tspan x={midX} dy="0em">
+          {label}
+        </tspan>
         <tspan x={midX} dy="1.2em">
           {edgeLabel}
-        </tspan> 
+        </tspan>
       </text>
     </>
   );
