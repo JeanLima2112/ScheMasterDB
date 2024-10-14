@@ -1,4 +1,4 @@
-import { Flex, Image, useDisclosure } from "@chakra-ui/react";
+import { Button, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import {
   addEdge,
   Background,
@@ -18,6 +18,7 @@ import EdgeForm from "./components/edgeform/EdgeForm";
 import CustomEdge from "./components/edges/Relation";
 import NodeForm from "./components/nodeform/NodeForm";
 import NodeCustom from "./components/nodes/Node";
+import { FaSave } from "react-icons/fa";
 
 const NODE_TYPES = {
   node: NodeCustom,
@@ -93,6 +94,10 @@ export default function WorkSpace() {
     onEdgeOpen();
   };
 
+  const saveFlow =() => {
+    alert('Salvar Flow')
+  }
+
   return (
     <Flex w="100dvw" h="100dvh" direction="column">
       <Header />
@@ -141,17 +146,28 @@ export default function WorkSpace() {
             <Controls className="custom-controls" />
             <Background gap={12} size={1} />
           </ReactFlow>
-          {/* <Button
-            position="absolute"
-            top="10%"
-            right="0%"
-            onClick={onOpen}
-            color="black"
-            borderRadius="0 5px 5px 0"
-            fontSize='1.2rem'
-          >
-            <MdOutlineKeyboardDoubleArrowLeft />
-          </Button> */}
+          <Button
+      position="absolute"
+      top="20%"
+      right="94%"
+      onClick={saveFlow}
+      color="white" 
+      backgroundColor="#4CAF50" 
+      borderRadius="5px"
+      fontSize="1.2rem"
+      padding="10px 15px"
+      boxShadow="0 4px 8px rgba(0, 0, 0, 0.2)" 
+      transition="background-color 0.3s, transform 0.3s" 
+      _hover={{
+        backgroundColor: "#45a049",
+        transform: "scale(1.05)", 
+      }}
+      _active={{
+        transform: "scale(0.95)", 
+      }}
+    >
+      <FaSave />
+    </Button>
           <NodeForm
             onClose={onClose}
             isOpen={isOpen}
