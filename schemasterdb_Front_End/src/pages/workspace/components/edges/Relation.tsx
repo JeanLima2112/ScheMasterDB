@@ -1,5 +1,4 @@
 import { BaseEdge, EdgeProps, getStraightPath } from "@xyflow/react";
-import React from "react";
 
 const CustomEdge = ({
   id,
@@ -21,7 +20,7 @@ const CustomEdge = ({
   const midY = (sourceY + targetY) / 2;
 
   const diamondWidth = 150;
-  const diamondHeight = 100;
+  const diamondHeight = 80;
 
   const diamondPath = `
     M ${midX},${midY - diamondHeight / 2} 
@@ -31,7 +30,6 @@ const CustomEdge = ({
     Z
   `;
 
-  const squareSize = Math.max(diamondWidth, diamondHeight);
   const squarePath = `
    M ${midX - diamondWidth / 2},${midY - diamondHeight / 2}
     L ${midX + diamondWidth / 2},${midY - diamondHeight / 2}

@@ -49,7 +49,7 @@ export default function WorkSpace() {
   } = useDisclosure();
 
   const onDrop = useCallback(
-    (event) => {
+    (event : any) => {
       event.preventDefault();
 
       const containerBounds = event.target.getBoundingClientRect();
@@ -72,12 +72,12 @@ export default function WorkSpace() {
     [setNodes]
   );
 
-  const onDragOver = useCallback((event) => {
+  const onDragOver = useCallback((event : any) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  const onConnect = useCallback((params) => {
+  const onConnect = useCallback((params : any) => {
     const newEdge = {
       ...params,
       id: crypto.randomUUID(),
@@ -97,6 +97,38 @@ export default function WorkSpace() {
   const saveFlow =() => {
     alert('Salvar Flow')
   }
+  // const saveFlow = useCallback(async () => {
+  //   const data = {
+  //     user_id: getUserID(),
+  //     id,
+  //     title,
+  //     nodes,
+  //     edges,
+  //     viewport: {
+  //       x: 0,
+  //       y: 0,
+  //       zoom: 1,
+  //     },
+  //   };
+  //   console.log(data);
+  //   try {
+  //     const response = await axios.put(
+  //       `http://localhost:3000/template/${id}`,
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${getToken()}`,
+  //         },
+  //       }
+  //     );
+  //     if (response.status === 200) {
+  //       console.log("Flow saved successfully");
+  //       window.location.reload();
+  //     }
+  //   } catch (error) {
+  //     console.error("Error saving flow", error);
+  //   }
+  // }, [id, title, nodes, edges]);
 
   return (
     <Flex w="100dvw" h="100dvh" direction="column">
@@ -124,7 +156,7 @@ export default function WorkSpace() {
           >
             <Image
               src="src\elements\Entity-removebg-preview.png"
-              alt="Dan Abramov"
+              alt="Entity gadget"
             />
           </Flex>
         </Flex>

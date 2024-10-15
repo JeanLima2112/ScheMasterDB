@@ -22,6 +22,7 @@ interface Props {
   nodes: any;
   setNodes: (values: any) => void;
 }
+
 export default function NodeForm({
   onClose,
   isOpen,
@@ -35,7 +36,6 @@ export default function NodeForm({
     formState: { errors },
   } = useForm<NodeProps>();
 
-
   useEffect(() => {
     if (nodeUpdate) {
       reset(nodeUpdate.data);
@@ -44,7 +44,6 @@ export default function NodeForm({
 
   const save = (data: any) => {
     const id = nodeUpdate.id;
-
 
     setNodes((nodes: any) =>
       nodes.map((node: any) =>
@@ -63,6 +62,7 @@ export default function NodeForm({
     reset();
     onClose();
   };
+
   return (
     <Drawer isOpen={isOpen} onClose={onClose}>
       <DrawerContent>
@@ -85,10 +85,20 @@ export default function NodeForm({
               <FormErrorMessage>{errors.label.message}</FormErrorMessage>
             )}
           </FormControl>
+          <Button
+          mt={10}
+            colorScheme="blue" 
+            width="100%"       
+            onClick={handleSubmit(save)}
+          >
+            Save
+          </Button>
         </DrawerBody>
-        <DrawerFooter>
-          <Button onClick={handleSubmit(save)}>Save</Button>
-        </DrawerFooter>
+
+     
+
+          
+      
       </DrawerContent>
     </Drawer>
   );

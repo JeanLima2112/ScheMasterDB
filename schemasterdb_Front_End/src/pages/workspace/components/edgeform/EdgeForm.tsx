@@ -44,7 +44,6 @@ export default function EdgeForm({
   }, [edgeUpdate, reset]);
 
   function save(data: MyEdgeProps) {
-    console.log(edgeUpdate);
     const newEdgeId = edgeUpdate.id;
 
     setEdges((edges: any) =>
@@ -85,6 +84,7 @@ export default function EdgeForm({
               <FormErrorMessage>{errors.label.message}</FormErrorMessage>
             )}
           </FormControl>
+
           <FormControl mt={5} isInvalid={!!errors.type}>
             <FormLabel>Cardinalidade</FormLabel>
             <Select
@@ -101,11 +101,15 @@ export default function EdgeForm({
               <FormErrorMessage>{errors.type.message}</FormErrorMessage>
             )}
           </FormControl>
+          <Button
+            mt={10}
+            colorScheme="blue"
+            width="100%"
+            onClick={handleSubmit(save)}
+          >
+            Save
+          </Button>
         </DrawerBody>
-
-        <DrawerFooter>
-          <Button onClick={handleSubmit(save)}>Save</Button>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
