@@ -1,22 +1,20 @@
 import {
   Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  useDisclosure,
+  Flex,
+  Menu,
+  MenuButton,
+  Text,
+  useDisclosure
 } from "@chakra-ui/react";
+import { useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosLogOut } from "react-icons/io";
-import { useRef } from "react";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
