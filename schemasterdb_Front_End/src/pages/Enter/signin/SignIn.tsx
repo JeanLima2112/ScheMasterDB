@@ -68,7 +68,7 @@ export default function AuthPage() {
           minW="40rem"
           gap="1rem"
           bg="white"
-          p="2%"
+          p="4%"
           borderRadius="1rem"
           boxShadow="2xl"
           transform={isVisible ? "translateY(0)" : "translateY(20px)"} 
