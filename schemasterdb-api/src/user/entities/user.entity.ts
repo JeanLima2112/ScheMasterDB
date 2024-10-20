@@ -13,4 +13,10 @@ export class User {
 
   @Column({ type: 'varchar', name: 'password_hash' })
   passwordHash: string;
+
+  @Column({ nullable: true })
+  token: string;
+
+  @Column({ default: false })
+  isEmailConfirmed: boolean;
 }

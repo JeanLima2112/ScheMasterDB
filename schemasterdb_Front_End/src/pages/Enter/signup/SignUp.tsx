@@ -110,7 +110,7 @@ export default function SignUp() {
                 <Input
                   placeholder="Email"
                   type="email"
-                  color="text"
+       
                   focusBorderColor="accent"
                   {...register("email", {
                     required: "Email é obrigatório",
@@ -138,7 +138,7 @@ export default function SignUp() {
                 <Input
                   placeholder="Nome de usuário"
                   type="text"
-                  color="text"
+    
                   focusBorderColor="accent"
                   {...register("username", {
                     required: "Nome de usuário é obrigatório",
@@ -162,7 +162,7 @@ export default function SignUp() {
                 <Input
                   placeholder="Senha"
                   type="password"
-                  color="text"
+      
                   focusBorderColor="accent"
                   {...register("password", {
                     required: "Senha é obrigatória",
@@ -186,7 +186,7 @@ export default function SignUp() {
                 <Input
                   placeholder="Confirme a senha"
                   type="password"
-                  color="text"
+
                   focusBorderColor="accent"
                   {...register("passwordConfirmation", {
                     required: "Confirmação de senha é obrigatória",
