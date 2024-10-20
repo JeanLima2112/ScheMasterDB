@@ -2,7 +2,7 @@
 
 SchemasterDB é um software de modelagem de banco de dados, projetado para facilitar a criação, visualização e gerenciamento de esquemas de banco de dados de maneira visual e intuitiva. Com ele, você pode criar diagramas conceituais, lógicos e físicos de um banco de dados, além de gerar scripts SQL automaticamente.
 
-![Screenshot do SchemasterDB](schemasterdb_Front_End\src\assets\logo\favicon\android-chrome-512x512.png)
+![Screenshot do SchemasterDB](schemasterdb_Front_End/src/assets/logo/favicon/android-chrome-512x512.png)
 
 ## Visão Geral
 
