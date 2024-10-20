@@ -9,6 +9,7 @@ import {
   InputLeftElement,
   Text,
   Link,
+  Image,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa";
@@ -30,7 +31,6 @@ export default function SignUp() {
     watch,
   } = useForm<UserCreate>();
   const watchPassword = watch("password");
-
   const navigate = useNavigate();
 
   const onSignUpSubmit = (data: UserCreate) => {
@@ -40,7 +40,7 @@ export default function SignUp() {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
           axios
             .post("http://localhost:3000/auth/login", data, {
               headers: { "Content-Type": "application/json" },
@@ -62,33 +62,39 @@ export default function SignUp() {
   return (
     <Flex
       alignItems="center"
-      justifyContent="center"
+      py="2rem"
       minH="100vh"
       direction="column"
       gap="1rem"
-      bg="#d4d4d4"
+      bgImage="url('./src/assets/background/cornered-stairs.svg')"
+      bgSize="cover"
     >
       <Flex
         direction="column"
         minW="40rem"
-        gap=".5rem"
-        bg="#ffff"
+        bg="tertiary1"
         p="1%"
         borderRadius="1rem"
       >
-        <Flex direction="column" gap="1.5rem">
-          <Text fontSize="2xl" fontWeight="bold" textAlign="center">
-            Criar Conta
-          </Text>
+        <Flex justifyContent="center">
+          <Image
+            src="src\assets\favicon_removebg\apple-touch-icon.png"
+            alt="Logo"
+   
+          />
+        </Flex>
 
+        <Flex direction="column" gap="1rem">
           <FormControl isInvalid={!!errors?.email}>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
+              <InputLeftElement color="secondary" pointerEvents="none">
                 <MdEmail />
               </InputLeftElement>
               <Input
                 placeholder="Email"
                 type="email"
+                color="text"
+                focusBorderColor="accent"
                 {...register("email", {
                   required: "Email é obrigatório",
                   minLength: {
@@ -109,12 +115,14 @@ export default function SignUp() {
 
           <FormControl isInvalid={!!errors?.username}>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
+              <InputLeftElement color="secondary" pointerEvents="none">
                 <FaUser />
               </InputLeftElement>
               <Input
                 placeholder="Nome de usuário"
                 type="text"
+                color="text"
+                focusBorderColor="accent"
                 {...register("username", {
                   required: "Nome de usuário é obrigatório",
                   minLength: {
@@ -131,12 +139,14 @@ export default function SignUp() {
 
           <FormControl isInvalid={!!errors?.password}>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
+              <InputLeftElement color="secondary" pointerEvents="none">
                 <RiLockPasswordFill />
               </InputLeftElement>
               <Input
                 placeholder="Senha"
                 type="password"
+                color="text"
+                focusBorderColor="accent"
                 {...register("password", {
                   required: "Senha é obrigatória",
                   minLength: {
@@ -153,12 +163,14 @@ export default function SignUp() {
 
           <FormControl isInvalid={!!errors?.passwordConfirmation}>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
+              <InputLeftElement color="secondary" pointerEvents="none">
                 <GoCheckbox />
               </InputLeftElement>
               <Input
                 placeholder="Confirme a senha"
                 type="password"
+                color="text"
+                focusBorderColor="accent"
                 {...register("passwordConfirmation", {
                   required: "Confirmação de senha é obrigatória",
                   validate: (value) =>
@@ -178,8 +190,14 @@ export default function SignUp() {
               {...register("terms", {
                 required: "Aceitar os termos é obrigatório",
               })}
+              colorScheme="secondary"
+              iconColor="accent"
+              color="text"
             >
-              Aceitar termos e condições
+              Li e aceito os{" "}
+              <Link color="accent" href="/termos" isExternal>
+                termos e condições
+              </Link>
             </Checkbox>
             {errors?.terms && (
               <FormErrorMessage>{errors.terms.message}</FormErrorMessage>
@@ -188,10 +206,11 @@ export default function SignUp() {
         </Flex>
 
         <Button
-          colorScheme="teal"
+          bg="secondary"
+          color="text"
           variant="solid"
           w="100%"
-          mt="2rem"
+          mt="1rem"
           gap=".5rem"
           onClick={() => handleSubmit(onSignUpSubmit)()}
         >
@@ -199,9 +218,9 @@ export default function SignUp() {
           Criar Conta
         </Button>
 
-        <Text textAlign="start">
+        <Text color="text" textAlign="start">
           Já tem uma conta?{" "}
-          <Link as={RouterLink} to="/login" color="teal.500">
+          <Link as={RouterLink} to="/login" color="accent">
             Faça login
           </Link>
         </Text>

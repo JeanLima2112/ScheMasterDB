@@ -3,7 +3,7 @@ import AuthPage from "./Enter/signin/SignIn";
 import SignUp from "./Enter/signup/SignUp";
 import WorkSpace from "./workspace/WorkSpace";
 import Projects from "./Projects/Projects";
-import LandingPage from "./Landing_Page/HomePage";
+import LandingPage from "./Landing_Page/LandingPage";
 
 const Router = () => {
   return (

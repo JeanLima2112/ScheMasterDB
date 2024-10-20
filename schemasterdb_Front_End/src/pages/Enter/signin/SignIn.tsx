@@ -36,7 +36,7 @@ export default function AuthPage() {
       })
       .then((response) => {
         setToken(response.data.token);
-        navigate("/projects"); 
+        navigate("/projects");
       })
       .catch(() => {
         alert("Ocorreu algum erro ao Entrar");
@@ -50,29 +50,31 @@ export default function AuthPage() {
       minH="100vh"
       direction="column"
       gap="1rem"
-      bg="#d4d4d4"
+      bg="#d4d4d4" // Você pode usar uma cor padrão aqui ou definir uma variável de cor
     >
       <Flex
         direction="column"
         minW="40rem"
         gap="2rem"
-        bg="#ffff"
+        bg="white"
         p="2%"
         borderRadius="1rem"
+        boxShadow="md" // Adicione uma sombra para dar mais profundidade
       >
         <Flex direction="column" gap="1.5rem">
-          <Text fontSize="2xl" fontWeight="bold" textAlign="center">
+          <Text fontSize="2xl" fontWeight="bold" textAlign="center" color="primary">
             Entre em sua conta
           </Text>
 
           <FormControl isInvalid={!!errors?.email}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
+            <InputGroup color="secondary">
+              <InputLeftElement  pointerEvents="none">
                 <MdEmail />
               </InputLeftElement>
               <Input
                 placeholder="Email"
                 type="email"
+                focusBorderColor="accent"
                 {...register("email", {
                   required: "Email é obrigatório",
                   minLength: {
@@ -92,13 +94,14 @@ export default function AuthPage() {
           </FormControl>
 
           <FormControl isInvalid={!!errors?.password}>
-            <InputGroup>
+            <InputGroup color="secondary">
               <InputLeftElement pointerEvents="none">
                 <RiLockPasswordFill />
               </InputLeftElement>
               <Input
                 placeholder="Senha"
                 type="password"
+                focusBorderColor="accent"
                 {...register("password", {
                   required: "Senha é obrigatória",
                   minLength: {
@@ -115,7 +118,8 @@ export default function AuthPage() {
         </Flex>
 
         <Button
-          colorScheme="teal"
+          bg="secondary" 
+          color="text"
           variant="solid"
           w="100%"
           mt="2rem"
@@ -128,7 +132,7 @@ export default function AuthPage() {
 
         <Text textAlign="start">
           Ainda não possui conta?{" "}
-          <Link as={RouterLink} to="/" color="teal.500">
+          <Link as={RouterLink} to="/singup" color="accent">
             Faça o seu cadastro
           </Link>
         </Text>
