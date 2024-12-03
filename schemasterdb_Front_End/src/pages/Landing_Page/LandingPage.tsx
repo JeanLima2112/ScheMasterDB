@@ -28,7 +28,7 @@ const LandingPage = () => {
           </Text>
         </Flex>
 
-        <Stack direction="row" spacing="1.5rem" alignItems="center">
+        <Stack direction="row" alignItems="center">
           <Link
             href="#features"
             fontSize="1rem"
@@ -71,7 +71,7 @@ const LandingPage = () => {
           </Link>
         </Stack>
 
-        <Stack direction="row" spacing="1rem" alignItems="center">
+        <Stack direction="row"  alignItems="center">
           <Button bg="accent" color="white" variant="outline" size="sm">
             Login
           </Button>
@@ -99,7 +99,7 @@ const LandingPage = () => {
               de modelagem intuitivo e completo.
             </Text>
 
-            <Stack direction="row" spacing={4} justify="center">
+            <Stack direction="row"  justify="center">
               <Button bg="accent" color="white" size="lg">
                 Login
               </Button>
