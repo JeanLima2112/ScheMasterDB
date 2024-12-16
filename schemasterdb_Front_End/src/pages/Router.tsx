@@ -5,7 +5,7 @@ import WorkSpace from "./workspace/WorkSpace";
 import Projects from "./Projects/Projects";
 import LandingPage from "./Landing_Page/LandingPage";
 
-const Router = () => {
+export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
@@ -18,4 +18,3 @@ const Router = () => {
   );
 };
 
-export default Router;
