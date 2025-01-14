@@ -13,6 +13,7 @@
 //     ssl: { rejectUnauthorized: false },
 //   },
 // });
+
 export default () => ({
   database: {
     type: (process.env.DB_TYPE as 'postgres') || 'postgres',

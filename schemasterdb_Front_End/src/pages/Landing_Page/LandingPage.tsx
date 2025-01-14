@@ -20,8 +20,7 @@ export default function LandingPage() {
       <Flex
         bg="primary"
         color="text"
-        px="1.5rem"
-        py="1rem"
+        pr="1.5rem"
         align="center"
         justify="space-between"
         boxShadow="md"
@@ -30,16 +29,17 @@ export default function LandingPage() {
         w="100%"
         zIndex="1000"
       >
-        <Flex align="center">
-          <Image
-            src="src/assets/logo/favicon/android-chrome-192x192.png"
-            boxSize="40px"
-            mr="1rem"
-          />
-          <Text fontSize="1.5rem" fontWeight="bold" color="secondary">
-            ScheMasterDB
-          </Text>
-        </Flex>
+        <Flex 
+      w="4rem" 
+      alignItems="center" 
+      cursor="pointer" 
+ 
+    >
+      <Image src="src/assets/logo/favicon/android-chrome-192x192.png" />
+      <Text fontSize="1.5rem" color="secondary">
+        ScheMasterDB
+      </Text>
+    </Flex>
 
   
         <Stack direction="row" spacing="1.5rem" display={{ base: "none", md: "flex" }}>

@@ -8,7 +8,8 @@ const colors = {
   tertiary1: "#4A5568", // Terciária 1 (cinza-azulado escuro)
   tertiary2: "#2C7A7B", // Terciária 2 (azul-esverdeado profundo)
   background: "#d4d4d4", // Fundo
-  text: '#ffff'
+  text: '#ffff',
+  text_2:'#000' 
 };
 
 const theme = extendTheme({ colors });
